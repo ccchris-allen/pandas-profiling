@@ -11,6 +11,10 @@ For each column the following statistics - if relevant for the column type - are
 * **Histogram**
 * **Correlations** highlighting of highly correlated variables, Spearman and Pearson matrixes
 
+## FORK CHANGES
+
+* Percentage calculations are now using floating points to avoid issues with < Python 3.
+
 ## Demo
 
 [Click here](http://nbviewer.ipython.org/github/JosPolfliet/pandas-profiling/blob/master/examples/meteorites.ipynb) to see a live demo.
