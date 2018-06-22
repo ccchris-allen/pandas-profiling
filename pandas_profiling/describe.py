@@ -174,6 +174,7 @@ def describe_supported(series, **kwargs):
         The description of the variable as a Series with index being stats keys.
     """
     leng = len(series)  # number of observations in the Series
+    lengf = 1.0 * leng
     count = series.count()  # number of non-NaN observations in the Series
     n_infinite = count - series.count()  # number of infinte observations in the Series
 
@@ -185,13 +186,13 @@ def describe_supported(series, **kwargs):
 
     results_data = {'count': count,
                     'distinct_count': distinct_count,
-                    'p_missing': 1 - count / leng,
+                    'p_missing': 1 - count / lengf,
                     'n_missing': leng - count,
-                    'p_infinite': n_infinite / leng,
+                    'p_infinite': n_infinite / lengf,
                     'n_infinite': n_infinite,
                     'is_unique': distinct_count == leng,
                     'mode': mode,
-                    'p_unique': distinct_count / leng}
+                    'p_unique': distinct_count / lengf}
     try:
         # pandas 0.17 onwards
         results_data['memorysize'] = series.memory_usage()
@@ -214,13 +215,14 @@ def describe_unsupported(series, **kwargs):
         The description of the variable as a Series with index being stats keys.
     """
     leng = len(series)  # number of observations in the Series
+    lengf = 1.0 * leng
     count = series.count()  # number of non-NaN observations in the Series
     n_infinite = count - series.count()  # number of infinte observations in the Series
 
     results_data = {'count': count,
-                    'p_missing': 1 - count / leng,
+                    'p_missing': 1 - count / lengf,
                     'n_missing': leng - count,
-                    'p_infinite': n_infinite / leng,
+                    'p_infinite': n_infinite / lengf,
                     'n_infinite': n_infinite,
                     'type': base.S_TYPE_UNSUPPORTED}
 
